@@ -12,7 +12,15 @@
 !src/test/java/
 !src/test/java/aed/
 
+!src/main/java/aed/util/
+!src/main/java/aed/util/*java
+
 !src/main/java/aed/ut3/
 !src/main/java/aed/ut3/*java
 !src/test/java/aed/ut3/
 !src/test/java/aed/ut3/*java
+
+!src/main/java/aed/ut4/
+!src/main/java/aed/ut4/*java
+!src/test/java/aed/ut4/
+!src/test/java/aed/ut4/*java
