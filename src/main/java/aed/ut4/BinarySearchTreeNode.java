@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import aed.util.Pair;
 
 public class BinarySearchTreeNode<K extends Comparable<K>, V> {
-	K key;
-	V value;
+	public K key;
+	public V value;
 	BinarySearchTreeNode<K, V> left;
 	BinarySearchTreeNode<K, V> right;
 
@@ -49,8 +49,12 @@ public class BinarySearchTreeNode<K extends Comparable<K>, V> {
 			}
 			return this.right.search(key);
 		} else {
-			return null;
+			return this;
 		}
+	}
+
+	public boolean contains(Comparable<K> key) {
+		return this.search(key) != null;
 	}
 
 	public BinarySearchTreeNode<K, V> delete(Comparable<K> key) {
@@ -148,5 +152,34 @@ public class BinarySearchTreeNode<K extends Comparable<K>, V> {
 		l.addAll(leftList);
 		l.add(new Pair<>(this.key, this.value));
 		return l;
+	}
+
+	public int size() {
+		// For me :)
+		int size = 1;
+
+		if (this.right != null) {
+			size += this.right.size();
+		}
+
+		if (this.left != null) {
+			size += this.left.size();
+		}
+
+		return size;
+	}
+
+	public int height() {
+		int height = -1;
+
+		if (this.right != null) {
+			height = Math.max(height, this.right.height());
+		}
+
+		if (this.left != null) {
+			height = Math.max(height, this.left.height());
+		}
+
+		return height + 1;
 	}
 }
