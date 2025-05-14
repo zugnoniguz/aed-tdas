@@ -1,4 +1,4 @@
-package aed.ut1;
+package aed.ut3;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;

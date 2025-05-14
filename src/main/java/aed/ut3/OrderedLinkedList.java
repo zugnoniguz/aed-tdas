@@ -1,4 +1,4 @@
-package aed.ut1;
+package aed.ut3;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,9 @@ public class OrderedLinkedList<T extends Comparable<T>> {
 			return true;
 		}
 
-		OrderedLinkedListNode<T> prev = this.root;
-		OrderedLinkedListNode<T> node = prev.next;
+		OrderedLinkedListNode<T> node = this.root;
 
-		for (; node != null; node = node.next, prev = prev.next) {
+		for (; node.next != null; node = node.next) {
 			int res = data.compareTo(node.data);
 			if (res == 0) {
 				return false;
@@ -33,15 +32,38 @@ public class OrderedLinkedList<T extends Comparable<T>> {
 			}
 		}
 
-		int res = data.compareTo(prev.data);
+		int res = data.compareTo(node.data);
 		if (res == 0) {
 			return false;
 		} else if (res < 0) {
 			assert false : "no";
 		}
 
-		prev.next = new OrderedLinkedListNode<T>(data);
+		node.next = new OrderedLinkedListNode<T>(data);
 		return true;
+	}
+
+	public boolean delete(Comparable<T> data) {
+		if (this.root == null) {
+			return false;
+		}
+
+		if (data.compareTo(this.root.data) == 0) {
+			this.root = this.root.next;
+			return true;
+		}
+
+		OrderedLinkedListNode<T> node = this.root;
+
+		while (node.next != null) {
+			if (data.compareTo(node.next.data) == 0) {
+				node.next = node.next.next;
+				return true;
+			}
+			node = node.next;
+		}
+
+		return false;
 	}
 
 	public ArrayList<T> toArray() {
@@ -52,6 +74,13 @@ public class OrderedLinkedList<T extends Comparable<T>> {
 		}
 
 		return arr;
+	}
+
+	public void printDebug() {
+		OrderedLinkedListNode<T> node = this.root;
+		for (; node != null; node = node.next) {
+			System.out.printf("Node: %s\n", node.data.toString());
+		}
 	}
 
 	public boolean isEmpty() {

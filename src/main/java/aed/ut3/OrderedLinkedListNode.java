@@ -1,4 +1,4 @@
-package aed.ut1;
+package aed.ut3;
 
 public class OrderedLinkedListNode<T> {
 	public T data;
