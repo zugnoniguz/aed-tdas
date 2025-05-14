@@ -66,6 +66,17 @@ public class OrderedLinkedList<T extends Comparable<T>> {
 		return false;
 	}
 
+	public OrderedLinkedListNode<T> search(Comparable<T> data) {
+		OrderedLinkedListNode<T> node = this.root;
+		for (; node != null; node = node.next) {
+			if (data.compareTo(node.data) == 0) {
+				return node;
+			}
+		}
+
+		return null;
+	}
+
 	public ArrayList<T> toArray() {
 		ArrayList<T> arr = new ArrayList<T>();
 		OrderedLinkedListNode<T> node = this.root;

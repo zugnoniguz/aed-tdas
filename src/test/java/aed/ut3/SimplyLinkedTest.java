@@ -68,4 +68,16 @@ public class SimplyLinkedTest {
 		assertFalse(list.delete(6));
 		assertArrayEquals(list.toArray().toArray(), new Object[] { 5 });
 	}
+
+	@Test
+	public void cantInsertElementThatsAlreadyThere() {
+		assertTrue(list.isEmpty());
+
+		assertTrue(list.insert(5));
+
+		assertFalse(list.isEmpty());
+
+		assertFalse(list.delete(6));
+		assertArrayEquals(list.toArray().toArray(), new Object[] { 5 });
+	}
 }

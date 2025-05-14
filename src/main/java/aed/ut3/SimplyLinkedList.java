@@ -2,25 +2,29 @@ package aed.ut3;
 
 import java.util.ArrayList;
 
-public class SimplyLinkedList<T> {
+public class SimplyLinkedList<T extends Comparable<T>> {
 	private SimplyLinkedListNode<T> root;
 
 	public SimplyLinkedList() {
 		this.root = null;
 	}
 
-	public void insert(T data) {
+	public boolean insert(T data) {
 		if (this.root == null) {
 			this.root = new SimplyLinkedListNode<>(data);
-			return;
+			return true;
 		}
 
 		SimplyLinkedListNode<T> node = this.root;
 		while (node.next != null) {
+			if (data.compareTo(node.data) == 0) {
+				return false;
+			}
 			node = node.next;
 		}
 
 		node.next = new SimplyLinkedListNode<>(data);
+		return true;
 	}
 
 	public boolean delete(Comparable<T> data) {
