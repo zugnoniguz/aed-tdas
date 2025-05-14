@@ -1,4 +1,4 @@
-package ut1;
+package aed.ut1;
 
 public class SimplyLinkedListNode<T> {
 	public T data;

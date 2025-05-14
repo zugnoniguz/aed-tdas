@@ -1,4 +1,6 @@
-package ut1;
+package aed.ut1;
+
+import java.util.ArrayList;
 
 public class OrderedLinkedList<T extends Comparable<T>> {
 	private OrderedLinkedListNode<T> root;
@@ -40,5 +42,29 @@ public class OrderedLinkedList<T extends Comparable<T>> {
 
 		prev.next = new OrderedLinkedListNode<T>(data);
 		return true;
+	}
+
+	public ArrayList<T> toArray() {
+		ArrayList<T> arr = new ArrayList<T>();
+		OrderedLinkedListNode<T> node = this.root;
+		for (; node != null; node = node.next) {
+			arr.add(node.data);
+		}
+
+		return arr;
+	}
+
+	public boolean isEmpty() {
+		return this.root == null;
+	}
+
+	public int size() {
+		int size = 0;
+		OrderedLinkedListNode<T> node = this.root;
+		while (node.next != null) {
+			++size;
+		}
+
+		return size;
 	}
 }

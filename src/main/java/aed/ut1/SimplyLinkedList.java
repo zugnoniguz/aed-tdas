@@ -1,7 +1,13 @@
-package ut1;
+package aed.ut1;
+
+import java.util.ArrayList;
 
 public class SimplyLinkedList<T> {
 	private SimplyLinkedListNode<T> root;
+
+	public SimplyLinkedList() {
+		this.root = null;
+	}
 
 	public void insert(T data) {
 		if (this.root == null) {
@@ -50,5 +56,29 @@ public class SimplyLinkedList<T> {
 		}
 
 		return null;
+	}
+
+	public ArrayList<T> toArray() {
+		ArrayList<T> arr = new ArrayList<T>();
+		SimplyLinkedListNode<T> node = this.root;
+		for (; node != null; node = node.next) {
+			arr.add(node.data);
+		}
+
+		return arr;
+	}
+
+	public boolean isEmpty() {
+		return this.root == null;
+	}
+
+	public int size() {
+		int size = 0;
+		SimplyLinkedListNode<T> node = this.root;
+		while (node.next != null) {
+			++size;
+		}
+
+		return size;
 	}
 }
