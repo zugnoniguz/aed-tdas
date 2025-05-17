@@ -16,26 +16,12 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		return this.root.insert(key, value);
 	}
 
-	public BinarySearchTreeNode<K, V> delete(Comparable<K> key) {
+	public void delete(Comparable<K> key) {
 		if (this.isEmpty()) {
-			return null;
+			return;
 		}
 
-		BinarySearchTreeNode<K, V> ret = this.root.delete(key);
-		if (ret == null) {
-			return null;
-		}
-
-		System.out.println("Value: ");
-		System.out.println(ret.value);
-		System.out.println("Key: ");
-		System.out.println(ret.key);
-		System.out.println();
-		if (ret == this.root && key.compareTo(this.root.key) != 0) {
-			return null;
-		}
-
-		return ret;
+		this.root.delete(key);
 	}
 
 	public BinarySearchTreeNode<K, V> search(Comparable<K> key) {

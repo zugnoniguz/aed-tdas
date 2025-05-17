@@ -63,7 +63,7 @@ class BinarySearchTreeTest {
 		bst.insert(5, 5);
 		bst.insert(15, 15);
 
-		assertNotNull(bst.delete(5));
+		bst.delete(5);
 		assertEquals(2, bst.size());
 		assertFalse(bst.contains(5));
 	}
@@ -74,7 +74,7 @@ class BinarySearchTreeTest {
 		bst.insert(5, 5);
 		bst.insert(2, 2);
 
-		assertNotNull(bst.delete(5));
+		bst.delete(5);
 		assertEquals(2, bst.size());
 		assertFalse(bst.contains(5));
 		assertTrue(bst.contains(2));
@@ -88,7 +88,7 @@ class BinarySearchTreeTest {
 		bst.insert(5, 5);
 		bst.insert(15, 15);
 
-		assertNotNull(bst.delete(10));
+		bst.delete(10);
 		assertEquals(4, bst.size());
 		assertFalse(bst.contains(10));
 	}
@@ -97,7 +97,7 @@ class BinarySearchTreeTest {
 	void testDeleteNonexistent() {
 		bst.insert(10, 10);
 
-		assertNull(bst.delete(99));
+		bst.delete(99);
 		assertEquals(1, bst.size());
 		assertTrue(bst.contains(10));
 	}
