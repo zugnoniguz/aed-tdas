@@ -10,6 +10,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import aed.util.Pair;
+
 class AVLTreeTest {
 
 	private AVLTree<Integer, Integer> bst;
@@ -38,5 +40,26 @@ class AVLTreeTest {
 
 		assertFalse(bst.insert(6, 3));
 		assertFalse(bst.insert(5, 4));
+
+	}
+
+	@Test
+	void deleteWorks() {
+		assertTrue(bst.isEmpty());
+
+		assertTrue(bst.insert(10, 10));
+		assertTrue(bst.insert(5, 5));
+		assertTrue(bst.insert(2, 2));
+		assertTrue(bst.insert(3, 3));
+		assertTrue(bst.insert(6, 6));
+		assertTrue(bst.insert(7, 7));
+		assertTrue(bst.insert(8, 8));
+
+		assertFalse(bst.insert(6, 3));
+		assertFalse(bst.insert(5, 4));
+
+		bst.delete(7);
+		bst.delete(9);
+		assertFalse(bst.contains(7));
 	}
 }

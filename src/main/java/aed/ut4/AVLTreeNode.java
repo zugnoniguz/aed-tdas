@@ -17,6 +17,27 @@ public class AVLTreeNode<K extends Comparable<K>, V> {
 		this.height = 0;
 	}
 
+	public AVLTreeNode<K, V> search(Comparable<K> key) {
+		int res = key.compareTo(this.key);
+		if (res < 0) {
+			if (this.left == null) {
+				return null;
+			}
+			return this.left.search(key);
+		} else if (res > 0) {
+			if (this.right == null) {
+				return null;
+			}
+			return this.right.search(key);
+		} else {
+			return this;
+		}
+	}
+
+	public boolean contains(Comparable<K> key) {
+		return this.search(key) != null;
+	}
+
 	private void updateHeight() {
 		this.height = Math.max(this.getHeight(this.right), this.getHeight(this.left)) + 1;
 	}
@@ -136,19 +157,20 @@ public class AVLTreeNode<K extends Comparable<K>, V> {
 			if (this.left != null) {
 				this.left = this.left.delete(key);
 			}
-			return this;
 		} else if (res > 0) {
 			if (this.right != null) {
 				this.right = this.right.delete(key);
 			}
-			return this;
+		} else {
+			return this.removeNodeAndRebalance();
 		}
 
-		// TODO: Rebalance
-		return this.removeNode();
+		this.checkBalance();
+		this.updateHeight();
+		return this;
 	}
 
-	private AVLTreeNode<K, V> removeNode() {
+	private AVLTreeNode<K, V> removeNodeAndRebalance() {
 		if (this.left == null) {
 			return this.right;
 		}
@@ -171,6 +193,8 @@ public class AVLTreeNode<K extends Comparable<K>, V> {
 		}
 
 		child.right = this.right;
+		child.checkBalance();
+		child.updateHeight();
 		return child;
 	}
 
